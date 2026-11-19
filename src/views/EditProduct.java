@@ -7,7 +7,9 @@ package views;
 import models.Product;
 import models.HeatPump;
 import models.DBManager;
+import models.Product;
 import models.SolarPanel;
+import models.Staff;
 
 /**
  *
@@ -20,12 +22,19 @@ public class EditProduct extends javax.swing.JFrame {
     // new global variable
     private Product productToEdit;
     
+    // Declare global variable that gets used in StaffHome
+    private Staff loggedInStaffMember;
     
     /**
      * Creates new form EditAnimal
      */
-    public EditProduct(Product p) {
+    public EditProduct(Product p, Staff sf) {
+        
         productToEdit = p;
+        
+        // Initialise this with a value
+        loggedInStaffMember = sf;
+        
         // global variable initialised
         initComponents();
         
@@ -157,7 +166,7 @@ public class EditProduct extends javax.swing.JFrame {
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addGap(90, 90, 90)
                 .addComponent(btnSubmit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -188,9 +197,9 @@ public class EditProduct extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtExtraAttribute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblExtra))
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(btnSubmit)
-                .addGap(72, 72, 72)
+                .addGap(71, 71, 71)
                 .addComponent(lblConfirmation)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -220,14 +229,14 @@ public class EditProduct extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
-        // Back to StaffHome page. (ask James about this)
-//        StaffHome staffHome = new StaffHome();
-//        staffHome.setVisible(true);
-//        this.setVisible(false);
-        
-        Shop shop = new Shop();
-        shop.setVisible(true);
+        // Back to StaffHome page, carry the loggedInStaffMember variable back over.
+        StaffHome staffHome = new StaffHome(loggedInStaffMember);
+        staffHome.setVisible(true);
         this.setVisible(false);
+        
+//        Shop shop = new Shop();
+//        shop.setVisible(true);
+//        this.setVisible(false);
         
     }//GEN-LAST:event_btnBackActionPerformed
 

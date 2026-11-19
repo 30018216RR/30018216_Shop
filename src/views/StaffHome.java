@@ -22,18 +22,21 @@ public class StaffHome extends javax.swing.JFrame {
     // need this for the list item to be populated.
     private ArrayList<Product> allProducts;
     
+    private Staff loggedInStaffMember;
+    
     /**
      * Creates new form StaffHome
      */
     public StaffHome(Staff p) {
+        
+        loggedInStaffMember = p;
+        
         initComponents();
 //        changing the text on the Greeting label with the greeting from the Customer class.
         lblGreeting.setText(p.greeting());
         
-// need these (and DBManager import) to initialise the list
         DBManager db = new DBManager();
         allProducts = db.loadProducts();
-//        initComponents();
     }
 
     /**
@@ -166,8 +169,14 @@ public class StaffHome extends javax.swing.JFrame {
 //        get the selected animal to pass onto next page
         Object selectedProductObject = (Object)lstProducts.getSelectedValue();
         Product selectedProduct = (Product)selectedProductObject;
+        //        
         
-        EditProduct edit = new EditProduct(selectedProduct);
+        //Staff selectedStaffMember = (Staff)loggedInStaffMember;
+        
+//        loggedInStaffMember = p;
+        
+        EditProduct edit = new EditProduct(selectedProduct, loggedInStaffMember);
+        
         edit.setVisible(true);
         this.setVisible(false);
         
